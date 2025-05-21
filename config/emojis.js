@@ -7,5 +7,11 @@ module.exports = {
   escudo: "<:escudo2:1358845900298125382>",
   lista: "<:lista:1358845681086759042>",
   caderno: "<:caderninho:1358846679000023143>",
-
+  mod: "<:mod:1359994724265623673>",
+  engrenagem: "<:engrenagem:1359994775591321803>",
+  lista2: "<:lista:1358845681086759042>",
+  kick: "<:Icon_Member_Kick:1358192756333350933>",
+  warn: "<:Icon_Member_Warn:1358194396075524327>",
+  marteloban: "<:icon_ban:1358175072166350908>",
+  martelo: "<:Icon_BanMember:1369430082506199191>",
 };

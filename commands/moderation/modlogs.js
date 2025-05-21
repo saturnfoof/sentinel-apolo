@@ -39,7 +39,7 @@ module.exports = {
           const embed = new EmbedBuilder()
             .setTitle(`${emojis.lista} Histórico de moderação de ${user.tag}`)
             .setThumbnail(user.displayAvatarURL({ dynamic: true }))
-            .setColor("Orange")
+            .setColor(0xFEE65C)
             .setFooter({ text: `Página ${page + 1} de ${totalPages}` });
 
           for (const row of currentLogs) {

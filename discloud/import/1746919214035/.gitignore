@@ -1,0 +1,13 @@
+# Ignorar variáveis de ambiente e configs sensíveis
+.env
+config.json
+
+# Ignorar dependências
+node_modules/
+
+# Ignorar logs
+*.log
+
+# Ignorar arquivos temporários do sistema
+.DS_Store
+Thumbs.db

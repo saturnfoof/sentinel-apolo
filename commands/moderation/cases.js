@@ -38,8 +38,8 @@ module.exports = {
         for (let i = 0; i < rows.length; i += chunkSize) {
           const current = rows.slice(i, i + chunkSize);
           const embed = new EmbedBuilder()
-            .setTitle(`<:escudo2:1358845900298125382> Histórico de Punições - ${user.tag}`)
-            .setColor("Red")
+            .setTitle(`${emojis.escudo} Histórico de Punições - ${user.tag}`)
+            .setColor(0xFEE65C)
             .setThumbnail(user.displayAvatarURL({ dynamic: true }))
             .setFooter({ text: `Página ${Math.floor(i / chunkSize) + 1} | Total: ${rows.length} punição(ões)` })
             .setTimestamp();

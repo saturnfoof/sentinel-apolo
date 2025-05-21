@@ -6,20 +6,21 @@ module.exports = {
   name: "ban",
   async execute(message, args, client) {
     if (!message.member.permissions.has(PermissionsBitField.Flags.BanMembers)) {
-      return message.reply("<:Icon_SystemMessageCross:1358195382022045857> Você não tem permissão para banir membros.");
+      return message.reply(`${emojis.errado} Você não tem permissão para banir membros.`);
     }
 
     const targetId = args[0];
     const user = message.mentions.members.first() || await message.guild.members.fetch(targetId).catch(() => null);
 
-    if (!user) return message.reply("<:Icon_SystemMessageCross:1358195382022045857> Usuário não encontrado. Verifique se mencionou corretamente ou se o ID está correto.");
+    if (!user) return message.reply(`${emojis.errado} Usuário não encontrado. Verifique se mencionou corretamente ou se o ID está correto.`);
 
     const reason = args.slice(1).join(" ") || "Sem motivo fornecido";
 
     const embed = new EmbedBuilder()
-      .setTitle("Confirmação de banimento")
-      .setDescription(`Tem certeza que deseja banir ${user}?\n**Motivo:** \`${reason}\``)
-      .setColor(0xFF0000);
+     .setTitle("Confirmação de banimento")
+     .setDescription(`Tem certeza que deseja banir ${user}?\n**Motivo:** \`${reason}\``)
+     .setThumbnail(user.user.displayAvatarURL({ dynamic: true, size: 512 }))
+      .setColor(0xFEE65C);
 
     const confirmButton = new ButtonBuilder()
       .setCustomId("confirm_ban")
@@ -45,7 +46,7 @@ module.exports = {
 
     collector.on("collect", async interaction => {
       if (interaction.user.id !== message.author.id)
-        return interaction.reply({ content: "<:Icon_SystemMessageCross:1358195382022045857> Apenas quem usou o comando pode interagir com ele!", ephemeral: true });
+        return interaction.reply({ content: `${emojis.errado} Apenas quem usou o comando pode interagir com ele!`, ephemeral: true });
 
       if (interaction.customId === "confirm_ban") {
         try {
@@ -85,14 +86,14 @@ module.exports = {
         } catch (err) {
           console.error(err);
           await interaction.update({
-            content: "<:Icon_SystemMessageCross:1358195382022045857> Ocorreu um erro ao tentar banir o usuário.",
+            content: `${emojis.errado} Ocorreu um erro ao tentar banir o usuário.`,
             embeds: [],
             components: []
           });
         }
       } else {
         await interaction.update({
-          content: "<:Icon_SystemMessageCross:1358195382022045857> Banimento cancelado.",
+          content: `${emojis.errado} Banimento cancelado.`,
           embeds: [],
           components: []
         });
@@ -102,7 +103,7 @@ module.exports = {
     collector.on("end", collected => {
       if (collected.size === 0) {
         msg.edit({
-          content: "<:gray_tempo:1358519332384276551> Tempo expirado. Nenhuma ação foi tomada.",
+          content: `<:gray_tempo:1358519332384276551> Tempo expirado. Nenhuma ação foi tomada.`,
           embeds: [],
           components: []
         }).catch(() => {});

@@ -14,7 +14,7 @@ const client = new Client({
 
 client.commands = new Collection();
 
-// Carregar comandos de todas as subpastas em "commands"
+// Carregar comandos
 const commandsPath = path.join(__dirname, "commands");
 fs.readdirSync(commandsPath).forEach(folder => {
   const folderPath = path.join(commandsPath, folder);
@@ -28,7 +28,10 @@ fs.readdirSync(commandsPath).forEach(folder => {
   });
 });
 
-// Detectar mensagens
+// Importar o módulo antiDropMention da pasta events
+require('./events/antiDropMention')(client);
+
+// Listener para comandos
 client.on("messageCreate", async message => {
   if (!message.content.startsWith(config.prefix) || message.author.bot) return;
 
@@ -46,5 +49,4 @@ client.on("messageCreate", async message => {
   }
 });
 
-// Iniciar o bot
 client.login(config.token);

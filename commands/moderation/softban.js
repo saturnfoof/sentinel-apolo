@@ -34,10 +34,10 @@ module.exports = {
 
     const msg = await message.reply({ embeds: [embed], components: [row] });
 
-    const filtro = i => i.user.id === message.author.id;
+    const filtro = (i) => i.user.id === message.author.id;
     const coletor = msg.createMessageComponentCollector({ filter: filtro, time: 15000, max: 1 });
 
-    coletor.on("collect", async interaction => {
+    coletor.on("collect", async (interaction) => {
       if (interaction.customId === "confirmar") {
         await interaction.deferUpdate();
 
@@ -50,9 +50,10 @@ module.exports = {
         const caseId = generateCaseId();
         const date = new Date().toISOString();
 
+        // ✅ Corrigido: padronizado como "softban" (minúsculo)
         db.run(`INSERT INTO modlogs (case_id, guild_id, user_id, user_tag, moderator_id, moderator_tag, type, reason, date)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-          [caseId, message.guild.id, user.id, user.tag, message.author.id, message.author.tag, "Softban", reason, date]);
+          [caseId, message.guild.id, user.id, user.tag, message.author.id, message.author.tag, "softban", reason, date]);
 
         await msg.edit({ content: `${emojis.certo} Softban aplicado em ${user} com sucesso!`, embeds: [], components: [] });
       } else {
@@ -60,7 +61,7 @@ module.exports = {
       }
     });
 
-    coletor.on("end", collected => {
+    coletor.on("end", (collected) => {
       if (collected.size === 0) {
         msg.edit({ content: `${emojis.tempo} Tempo esgotado. Nenhuma ação foi tomada.`, embeds: [], components: [] });
       }

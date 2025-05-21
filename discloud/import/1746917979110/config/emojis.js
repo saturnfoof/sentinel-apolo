@@ -1,0 +1,16 @@
+module.exports = {
+  certo: "<:certo:1358883392648646726> ",
+  errado: "<:Icon_SystemMessageCross:1358195382022045857>",
+  tempo: "<:gray_tempo:1358519332384276551>",
+  timeout: "<:Icon_Timeout:1358194363619999887>",
+  estatistica: "<:estatistica:1358845162620584302>",
+  escudo: "<:escudo2:1358845900298125382>",
+  lista: "<:lista:1358845681086759042>",
+  caderno: "<:caderninho:1358846679000023143>",
+  mod: "<:mod:1359994724265623673>",
+  engrenagem: "<:engrenagem:1359994775591321803>",
+  lista2: "<:lista:1358845681086759042>",
+  kick: "<:Icon_Member_Kick:1358192756333350933>",
+  warn: "<:Icon_Member_Warn:1358194396075524327>",
+  marteloban: "<:icon_ban:1358175072166350908>",
+};
